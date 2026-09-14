@@ -1,0 +1,19 @@
+{
+  "userId": "shopper_1",
+  "items": [
+    {
+      "productId": "prod_mouse",
+      "name": "Ergonomic Wireless Mouse",
+      "quantity": 8,
+      "unitPrice": 49.99,
+      "addedAt": "2026-09-14T13:53:37.882922+00:00"
+    },
+    {
+      "productId": "prod_headphones",
+      "name": "ANC Wireless Headphones",
+      "quantity": 7,
+      "unitPrice": 149.99,
+      "addedAt": "2026-09-14T13:53:42.934882+00:00"
+    }
+  ]
+}
