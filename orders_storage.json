@@ -1,0 +1,72 @@
+[
+  {
+    "orderId": "ORD-20260914-78C6E0",
+    "userId": "shopper_1",
+    "items": [
+      {
+        "productId": "prod_kb",
+        "name": "Mechanical RGB Keyboard",
+        "quantity": 19,
+        "unitPrice": 89.99,
+        "totalPrice": 1709.81
+      },
+      {
+        "productId": "prod_mouse",
+        "name": "Ergonomic Wireless Mouse",
+        "quantity": 19,
+        "unitPrice": 49.99,
+        "totalPrice": 949.81
+      },
+      {
+        "productId": "prod_monitor",
+        "name": "27-inch 4K UHD Monitor",
+        "quantity": 3,
+        "unitPrice": 329.99,
+        "totalPrice": 989.97
+      }
+    ],
+    "itemCount": 3,
+    "totalQuantity": 41,
+    "subtotal": 3649.59,
+    "tax": 291.97,
+    "total": 3941.56,
+    "status": "PLACED",
+    "createdAt": "2026-09-14T13:53:32.090057+00:00",
+    "nextOrderId": "ORD-20260914-F448D5"
+  },
+  {
+    "orderId": "ORD-20260914-F448D5",
+    "userId": "shopper_1",
+    "items": [
+      {
+        "productId": "prod_kb",
+        "name": "Mechanical RGB Keyboard",
+        "quantity": 14,
+        "unitPrice": 89.99,
+        "totalPrice": 1259.86
+      },
+      {
+        "productId": "prod_mouse",
+        "name": "Ergonomic Wireless Mouse",
+        "quantity": 5,
+        "unitPrice": 49.99,
+        "totalPrice": 249.95
+      },
+      {
+        "productId": "prod_monitor",
+        "name": "27-inch 4K UHD Monitor",
+        "quantity": 3,
+        "unitPrice": 329.99,
+        "totalPrice": 989.97
+      }
+    ],
+    "itemCount": 3,
+    "totalQuantity": 22,
+    "subtotal": 2499.78,
+    "tax": 199.98,
+    "total": 2699.76,
+    "status": "SHIPPED",
+    "createdAt": "2026-09-14T13:35:08.716315+00:00",
+    "nextOrderId": null
+  }
+]

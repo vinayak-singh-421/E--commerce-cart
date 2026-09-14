@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Cart & Order System | Doubly Linked List & Graph Architecture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-badge">DS & ALGO ARCHITECTURE &bull; COMPLETE SYSTEM (PHASES 1, 2, 3)</div>
+      <h1>E-Commerce Cart & Order System</h1>
+      <p class="subtitle">Doubly Linked List (Cart) &bull; Singly Linked List (Orders) &bull; Adjacency Graph (Recommendations)</p>
+    </div>
+    <div class="header-right">
+      <!-- Navigation Tabs -->
+      <nav class="nav-tab-group">
+        <button id="tab-cart" class="tab-btn active">
+          🛒 Active Cart
+          <span id="tab-cart-badge" class="tab-badge">0</span>
+        </button>
+        <button id="tab-orders" class="tab-btn">
+          📜 Order History
+          <span id="tab-orders-badge" class="tab-badge">0</span>
+        </button>
+        <button id="tab-graph" class="tab-btn">
+          🕸️ Product Graph
+          <span id="tab-graph-badge" class="tab-badge">0 Edges</span>
+        </button>
+      </nav>
+      <button id="btn-clear-cart" class="btn btn-secondary-danger">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+        Clear Cart (O(1))
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- VIEW 1: Active Cart, Visualizer & Recommendations -->
+    <div id="view-cart" class="tab-view active">
+      <!-- Row 1: Catalog & Shopping Cart -->
+      <div class="workspace-grid">
+        <!-- Section A: Product Catalog -->
+        <section class="card-panel catalog-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="icon">📦</span>
+              <h2>Product Catalog</h2>
+            </div>
+            <span class="badge">Click to Add &bull; O(1)</span>
+          </div>
+          <div id="catalog-list" class="catalog-grid">
+            <div class="loading-state">Loading catalog...</div>
+          </div>
+        </section>
+
+        <!-- Section B: Shopping Cart (Order View) -->
+        <section class="card-panel cart-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="icon">🛒</span>
+              <h2>Active Cart (Ordered List)</h2>
+            </div>
+            <div class="cart-integrity-tag" id="integrity-badge">
+              <span class="dot pulse"></span> Linked List Invariant OK
+            </div>
+          </div>
+
+          <div id="cart-empty-message" class="empty-state" style="display: none;">
+            <div class="empty-icon">🛍️</div>
+            <p>Your cart is currently empty.</p>
+            <span>Select items from the catalog or reorder past purchases.</span>
+          </div>
+
+          <div id="cart-item-list" class="cart-items-scroll"></div>
+
+          <!-- Checkout & Running Totals -->
+          <div class="cart-summary-footer">
+            <div class="summary-breakdown">
+              <div class="summary-line">
+                <span>Subtotal:</span>
+                <span id="val-subtotal" class="mono-val">$0.00</span>
+              </div>
+              <div class="summary-line">
+                <span>Tax Estimate (8%):</span>
+                <span id="val-tax" class="mono-val">$0.00</span>
+              </div>
+              <div class="summary-line total-line">
+                <span>Total Due:</span>
+                <span id="val-total" class="mono-val highlight-val">$0.00</span>
+              </div>
+            </div>
+            <button id="btn-checkout" class="btn btn-primary-action">
+              <span>Checkout &bull; Convert to Order (O(n))</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- Row 2: Graph-Driven Recommendations (FR-13 to FR-17) -->
+      <section class="card-panel recommendations-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="icon">✨</span>
+            <h2>Recommended For You (Graph Traversal Engine)</h2>
+          </div>
+          <span class="badge badge-recs">Traversed Adjacency Lists &bull; Multi-Seed Aggregation</span>
+        </div>
+        <div id="recommendations-empty" class="empty-state" style="display: none; padding: 1.5rem;">
+          <p>Add items to your cart to generate real-time graph recommendations.</p>
+        </div>
+        <div id="recommendations-grid" class="recs-grid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- Row 3: Live Doubly Linked List & Hash Index Visualizer -->
+      <section class="card-panel visualizer-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="icon">🧬</span>
+            <h2>Live Doubly Linked List In-Memory Visualizer</h2>
+          </div>
+          <div class="legend-bar">
+            <span class="legend-item"><span class="badge-head">HEAD</span> First Node</span>
+            <span class="legend-item"><span class="badge-tail">TAIL</span> Last Node</span>
+            <span class="legend-item"><span class="arrow-legend">⇄</span> Doubly Linked Pointers</span>
+            <span class="legend-item"><span class="index-legend">O(1)</span> Hash Index Ref</span>
+          </div>
+        </div>
+
+        <!-- Diagram viewport -->
+        <div class="viz-scroll-wrapper">
+          <div id="linked-list-viz" class="linked-list-track"></div>
+        </div>
+
+        <!-- Hash Map Index Inspector -->
+        <div class="hashmap-container">
+          <div class="hashmap-header">
+            <span class="hashmap-title">⚡ Supporting Hash Map Index (<code>nodeIndex: Map&lt;productId, Node&gt;</code>)</span>
+            <span class="hashmap-desc">Enables O(1) random-access pointer retrieval for instant deletion & quantity updates</span>
+          </div>
+          <div id="hashmap-entries" class="hashmap-pills"></div>
+        </div>
+
+        <!-- Complexity & Log Bar -->
+        <div class="operation-log-bar">
+          <div class="log-label">Last Operation:</div>
+          <div id="log-text" class="log-entry">System ready. Loaded Doubly Linked List cart.</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW 2: Order History -->
+    <div id="view-orders" class="tab-view" style="display: none;">
+      <!-- Singly Linked List Recency Header -->
+      <section class="card-panel orders-viz-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="icon">🔗</span>
+            <h2>Order History Structure &bull; Append-Only Singly Linked List</h2>
+          </div>
+          <span class="badge">O(1) Prepend Newest to Head</span>
+        </div>
+        <p class="section-desc">
+          Orders are immutable historical snapshots. On checkout, the cart linked list is frozen into an immutable OrderNode and prepended to the head.
+        </p>
+        <div class="orders-pipeline-viz">
+          <div id="orders-singly-chain" class="singly-chain-track"></div>
+        </div>
+      </section>
+
+      <!-- Orders List Container -->
+      <section class="card-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="icon">📜</span>
+            <h2>Past Orders (Sorted by Recency)</h2>
+          </div>
+          <span id="orders-count-label" class="badge">0 Orders Recorded</span>
+        </div>
+
+        <div id="orders-empty-message" class="empty-state" style="display: none;">
+          <div class="empty-icon">📦</div>
+          <p>No completed orders yet.</p>
+          <span>Add products to your cart and checkout to generate immutable order records!</span>
+        </div>
+
+        <div id="orders-cards-list" class="orders-cards-grid"></div>
+      </section>
+    </div>
+
+    <!-- VIEW 3: Product Relationship Graph Explorer -->
+    <div id="view-graph" class="tab-view" style="display: none;">
+      <section class="card-panel graph-view-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="icon">🕸️</span>
+            <h2>Product Relationship Graph Topology (In-Memory Adjacency List)</h2>
+          </div>
+          <div class="graph-legend">
+            <span class="graph-legend-tag tag-bought">BOUGHT_TOGETHER (Weight 2.5x)</span>
+            <span class="graph-legend-tag tag-viewed">VIEWED_TOGETHER (Weight 1.5x)</span>
+            <span class="graph-legend-tag tag-category">SAME_CATEGORY (Weight 1.0x)</span>
+          </div>
+        </div>
+        <p class="section-desc">
+          This graph powers the recommendation engine. Whenever an order is checked out, all co-purchased items dynamically receive higher edge weights.
+        </p>
+
+        <!-- Graph Nodes & Edges Directory -->
+        <div id="graph-adjacency-list" class="graph-nodes-grid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
