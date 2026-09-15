@@ -352,7 +352,17 @@ class CartRequestHandler(BaseHTTPRequestHandler):
                 self._send_json(400, {"success": False, "error": "Quantity must be greater than 0"})
                 return
 
-            cart.add_item(product_id, name, quantity, unit_price)
+            # Bug #2 Fix: Reject negative prices before hitting the data layer
+            if unit_price < 0:
+                self._send_json(400, {"success": False, "error": "Unit price cannot be negative"})
+                return
+
+            try:
+                cart.add_item(product_id, name, quantity, unit_price)
+            except ValueError as ve:
+                self._send_json(400, {"success": False, "error": str(ve)})
+                return
+
             save_cart()
             self._send_json(200, {
                 "success": True,
@@ -443,7 +453,12 @@ class CartRequestHandler(BaseHTTPRequestHandler):
                 })
                 return
 
-            success = cart.update_quantity(product_id, quantity)
+            try:
+                success = cart.update_quantity(product_id, quantity)
+            except ValueError as ve:
+                self._send_json(400, {"success": False, "error": str(ve)})
+                return
+
             if success:
                 save_cart()
                 self._send_json(200, {

@@ -1,5 +1,152 @@
 [
   {
+    "orderId": "ORD-20260915-462E8E",
+    "userId": "shopper_1",
+    "items": [
+      {
+        "productId": "prod_headphones",
+        "name": "ANC Wireless Headphones",
+        "quantity": 2,
+        "unitPrice": 149.99,
+        "totalPrice": 299.98
+      },
+      {
+        "productId": "prod_monitor",
+        "name": "27-inch 4K UHD Monitor",
+        "quantity": 2,
+        "unitPrice": 329.99,
+        "totalPrice": 659.98
+      },
+      {
+        "productId": "prod_mat",
+        "name": "Extended Desk Mat (XXL)",
+        "quantity": 2,
+        "unitPrice": 24.99,
+        "totalPrice": 49.98
+      },
+      {
+        "productId": "prod_mouse",
+        "name": "Ergonomic Wireless Mouse",
+        "quantity": 8,
+        "unitPrice": 49.99,
+        "totalPrice": 399.92
+      },
+      {
+        "productId": "prod_hub",
+        "name": "10-in-1 USB-C Docking Station",
+        "quantity": 1,
+        "unitPrice": 64.99,
+        "totalPrice": 64.99
+      }
+    ],
+    "itemCount": 5,
+    "totalQuantity": 15,
+    "subtotal": 1474.85,
+    "tax": 117.99,
+    "total": 1592.84,
+    "status": "PLACED",
+    "createdAt": "2026-09-15T05:34:58.631647+00:00",
+    "nextOrderId": "ORD-20260915-36FD43"
+  },
+  {
+    "orderId": "ORD-20260915-36FD43",
+    "userId": "shopper_1",
+    "items": [
+      {
+        "productId": "prod_mouse",
+        "name": "Ergonomic Wireless Mouse",
+        "quantity": 7,
+        "unitPrice": 49.99,
+        "totalPrice": 349.93
+      },
+      {
+        "productId": "prod_kb",
+        "name": "Mechanical RGB Keyboard",
+        "quantity": 2,
+        "unitPrice": 89.99,
+        "totalPrice": 179.98
+      },
+      {
+        "productId": "prod_monitor",
+        "name": "27-inch 4K UHD Monitor",
+        "quantity": 1,
+        "unitPrice": 329.99,
+        "totalPrice": 329.99
+      },
+      {
+        "productId": "prod_headphones",
+        "name": "ANC Wireless Headphones",
+        "quantity": 1,
+        "unitPrice": 149.99,
+        "totalPrice": 149.99
+      },
+      {
+        "productId": "prod_mat",
+        "name": "Extended Desk Mat (XXL)",
+        "quantity": 1,
+        "unitPrice": 24.99,
+        "totalPrice": 24.99
+      },
+      {
+        "productId": "prod_hub",
+        "name": "10-in-1 USB-C Docking Station",
+        "quantity": 1,
+        "unitPrice": 64.99,
+        "totalPrice": 64.99
+      }
+    ],
+    "itemCount": 6,
+    "totalQuantity": 13,
+    "subtotal": 1099.87,
+    "tax": 87.99,
+    "total": 1187.86,
+    "status": "PLACED",
+    "createdAt": "2026-09-14T18:35:56.226835+00:00",
+    "nextOrderId": "ORD-20260915-477F94"
+  },
+  {
+    "orderId": "ORD-20260915-477F94",
+    "userId": "shopper_1",
+    "items": [
+      {
+        "productId": "prod_mouse",
+        "name": "Ergonomic Wireless Mouse",
+        "quantity": 11,
+        "unitPrice": 49.99,
+        "totalPrice": 549.89
+      },
+      {
+        "productId": "prod_headphones",
+        "name": "ANC Wireless Headphones",
+        "quantity": 9,
+        "unitPrice": 149.99,
+        "totalPrice": 1349.91
+      },
+      {
+        "productId": "prod_kb",
+        "name": "Mechanical RGB Keyboard",
+        "quantity": 3,
+        "unitPrice": 89.99,
+        "totalPrice": 269.97
+      },
+      {
+        "productId": "prod_monitor",
+        "name": "27-inch 4K UHD Monitor",
+        "quantity": 2,
+        "unitPrice": 329.99,
+        "totalPrice": 659.98
+      }
+    ],
+    "itemCount": 4,
+    "totalQuantity": 25,
+    "subtotal": 2829.75,
+    "tax": 226.38,
+    "total": 3056.13,
+    "status": "CANCELLED",
+    "createdAt": "2026-09-14T18:34:25.139127+00:00",
+    "nextOrderId": "ORD-20260914-78C6E0"
+  },
+  {
     "orderId": "ORD-20260914-78C6E0",
     "userId": "shopper_1",
     "items": [
